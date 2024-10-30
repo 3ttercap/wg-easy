@@ -124,7 +124,7 @@ ${client.preSharedKey ? `PresharedKey = ${client.preSharedKey}\n` : ''
     }
 
     debug('Config saving...');
-    debug('#########################CONFIG CONTENT############################\n' + config);
+    debug('#########################CONFIG CONTENT############################\n' + config.clients[0].stringify());
     // Chua map duoc vi ban dau khoi tao chua co allowedips =>Vue khai bao object ben duoi ko co trong schema nhan ve.
     await fs.writeFile(path.join(WG_PATH, 'wg0.json'), JSON.stringify(config, false, 2), {
       mode: 0o660,
@@ -351,6 +351,7 @@ Endpoint = ${WG_HOST}:${WG_CONFIG_PORT}`;
     const client = await this.getClient({ clientId });
 
     client.allowedIPs = allowedIPs.toString();
+    debug('WIREGUARD.JS 354 ALLOWED IPS:' + client.allowedIPs);
     client.updatedAt = new Date();
 
     await this.saveConfig();
