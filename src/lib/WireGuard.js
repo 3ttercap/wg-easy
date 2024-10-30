@@ -154,7 +154,7 @@ ${client.preSharedKey ? `PresharedKey = ${client.preSharedKey}\n` : ''
       expiredAt: client.expiredAt !== null
         ? new Date(client.expiredAt)
         : null,
-      allowedIPs: client && Array.isArray(client.allowedIPs) && client.allowedIPs[0] && client.allowedIPs.length > 0 ? ',' + client.allowedIPs[0] : '',
+      allowedIPs: client && client.allowedIPs && client.allowedIPs.length > 0 ? ',' + client.allowedIPs : '',
       oneTimeLink: client.oneTimeLink ?? null,
       oneTimeLinkExpiresAt: client.oneTimeLinkExpiresAt ?? null,
       downloadableConfig: 'privateKey' in client,
