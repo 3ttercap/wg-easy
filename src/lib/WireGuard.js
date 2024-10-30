@@ -124,7 +124,7 @@ ${client.preSharedKey ? `PresharedKey = ${client.preSharedKey}\n` : ''
     }
 
     debug('Config saving...');
-    debug('#########################CONFIG CONTENT############################\n' + config.stringify());
+    debug('#########################CONFIG CONTENT############################\n' + JSON.stringify(config, false, 2));
     // Chua map duoc vi ban dau khoi tao chua co allowedips =>Vue khai bao object ben duoi ko co trong schema nhan ve.
     await fs.writeFile(path.join(WG_PATH, 'wg0.json'), JSON.stringify(config, false, 2), {
       mode: 0o660,
