@@ -125,6 +125,7 @@ ${client.preSharedKey ? `PresharedKey = ${client.preSharedKey}\n` : ''
 
     debug('Config saving...');
     debug('#########################CONFIG CONTENT############################\n' + result);
+    // Chua map duoc vi ban dau khoi tao chua co allowedips =>Vue khai bao object ben duoi ko co trong schema nhan ve.
     await fs.writeFile(path.join(WG_PATH, 'wg0.json'), JSON.stringify(config, false, 2), {
       mode: 0o660,
     });
@@ -153,7 +154,7 @@ ${client.preSharedKey ? `PresharedKey = ${client.preSharedKey}\n` : ''
       expiredAt: client.expiredAt !== null
         ? new Date(client.expiredAt)
         : null,
-      allowedIPs: client.allowedIPs,
+      allowedIPs: client && Array.isArray(client.allowedIPs) && client.allowedIPs[0] && client.allowedIPs.length > 0 ? ',' + client.allowedIPs[0] : '',
       oneTimeLink: client.oneTimeLink ?? null,
       oneTimeLinkExpiresAt: client.oneTimeLinkExpiresAt ?? null,
       downloadableConfig: 'privateKey' in client,
