@@ -308,7 +308,7 @@ module.exports = class Server {
         if (clientId === '__proto__' || clientId === 'constructor' || clientId === 'prototype') {
           throw createError({ status: 403 });
         }
-        const { address } = await readBody(event);
+        const { allowedIPs } = await readBody(event);
         await WireGuard.updateClientAllowedIPs({ clientId, allowedIPs });
         return { success: true };
       }))
