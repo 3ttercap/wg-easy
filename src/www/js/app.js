@@ -339,7 +339,7 @@ new Vue({
         .catch((err) => alert(err.message || err.toString()))
         .finally(() => this.refresh().catch(console.error));
     },
-    updateclientEditAllowedIPsId (client, allowedIPs) {
+    updateClientAllowedIPs (client, allowedIPs) {
       this.api.updateclientEditAllowedIPsId({ clientId: client.id, allowedIPs })
         .catch((err) => alert(err.message || err.toString()))
         .finally(() => this.refresh().catch(console.error));
