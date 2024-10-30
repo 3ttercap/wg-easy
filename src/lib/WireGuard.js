@@ -120,13 +120,12 @@ PostDown = ${WG_POST_DOWN}
 [Peer]
 PublicKey = ${client.publicKey}
 ${client.preSharedKey ? `PresharedKey = ${client.preSharedKey}\n` : ''
-}AllowedIPs = ${client.address}/32${client && client.allowedIPs && client.allowedIPs.length > 0 ? ',' + client.allowedIPs : ''}`;
+}AllowedIPs = ${client.address}/32${client && client.allowedIPs && client.allowedIPs.length > 0 ? ', ' + client.allowedIPs : ''}`;
     }
 
     debug('Config saving...');
     debug('#########################CONFIG CONTENT############################\n' + JSON.stringify(config, false, 2) + '\n');
     debug('#########################CONFIG CONTENT############################\n' + result + '\n');
-    // Chua map duoc vi ban dau khoi tao chua co allowedips =>Vue khai bao object ben duoi ko co trong schema nhan ve.
     await fs.writeFile(path.join(WG_PATH, 'wg0.json'), JSON.stringify(config, false, 2), {
       mode: 0o660,
     });
@@ -179,7 +178,7 @@ ${client.preSharedKey ? `PresharedKey = ${client.preSharedKey}\n` : ''
           publicKey,
           preSharedKey, // eslint-disable-line no-unused-vars
           endpoint, // eslint-disable-line no-unused-vars
-          allowedIps, // eslint-disable-line no-unused-vars
+          allowedIPs, // eslint-disable-line no-unused-vars
           latestHandshakeAt,
           transferRx,
           transferTx,
