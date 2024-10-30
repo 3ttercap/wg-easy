@@ -124,7 +124,7 @@ ${client.preSharedKey ? `PresharedKey = ${client.preSharedKey}\n` : ''
     }
 
     debug('Config saving...');
-    debug('#########################CONFIG CONTENT############################\n' . result);
+    debug('#########################CONFIG CONTENT############################\n' + result);
     await fs.writeFile(path.join(WG_PATH, 'wg0.json'), JSON.stringify(config, false, 2), {
       mode: 0o660,
     });
